@@ -1,0 +1,289 @@
+{
+  "recommendations": {
+    "RSA": {
+      "primaryReplacement": "ML-DSA-65 (Dilithium3)",
+      "latencyNote": "+12% signature generation CPU cycle count",
+      "costNote": "Public key size increases from 256 bytes to 1,952 bytes",
+      "alternatives": [
+        {
+          "nistStandard": "FIPS 204 (ML-DSA-65)",
+          "isHybrid": false,
+          "relativeLatency": 1.12,
+          "keySizeBytes": 1952,
+          "signatureSizeBytes": 3309,
+          "relativeCost": "low",
+          "rationale": "Primary NIST standardized digital signature algorithm at security level 3"
+        },
+        {
+          "nistStandard": "Composite (RSA-2048 + ML-DSA-65)",
+          "isHybrid": true,
+          "relativeLatency": 1.25,
+          "keySizeBytes": 2208,
+          "signatureSizeBytes": 3565,
+          "relativeCost": "medium",
+          "rationale": "Hybrid composite signature for backward compatibility with legacy verifiers"
+        },
+        {
+          "nistStandard": "FIPS 205 (SLH-DSA-SHA2-128s)",
+          "isHybrid": false,
+          "relativeLatency": 3.8,
+          "keySizeBytes": 32,
+          "signatureSizeBytes": 7856,
+          "relativeCost": "medium",
+          "rationale": "Stateless hash-based signature; ideal for firmware, root CAs, and audit logs requiring zero lattice assumptions"
+        }
+      ]
+    },
+    "ECDSA": {
+      "primaryReplacement": "ML-DSA-44 (Dilithium2)",
+      "latencyNote": "+8% processing overhead per verification",
+      "costNote": "Public key size expands from 64 bytes to 1,312 bytes",
+      "alternatives": [
+        {
+          "nistStandard": "FIPS 204 (ML-DSA-44)",
+          "isHybrid": false,
+          "relativeLatency": 1.08,
+          "keySizeBytes": 1312,
+          "signatureSizeBytes": 2420,
+          "relativeCost": "low",
+          "rationale": "NIST security level 2 signature standard matching classical 128-bit security"
+        },
+        {
+          "nistStandard": "Hybrid (ECDSA-P256 + ML-DSA-44)",
+          "isHybrid": true,
+          "relativeLatency": 1.18,
+          "keySizeBytes": 1376,
+          "signatureSizeBytes": 2484,
+          "relativeCost": "low",
+          "rationale": "Dual-signature composite for zero-risk phased enterprise rollout"
+        },
+        {
+          "nistStandard": "Falcon-512 (FN-DSA)",
+          "isHybrid": false,
+          "relativeLatency": 1.05,
+          "keySizeBytes": 897,
+          "signatureSizeBytes": 666,
+          "relativeCost": "high",
+          "rationale": "Compact signatures for bandwidth-constrained environments (requires constant-time floating-point arithmetic)"
+        }
+      ]
+    },
+    "Diffie-Hellman": {
+      "primaryReplacement": "ML-KEM-768 (Kyber768) Hybrid",
+      "latencyNote": "+1 TLS handshake roundtrip (1.2ms added network latency)",
+      "costNote": "Requires client-side TLS 1.3 hybrid KEM extension support",
+      "alternatives": [
+        {
+          "nistStandard": "FIPS 203 (ML-KEM-768) + X25519",
+          "isHybrid": true,
+          "relativeLatency": 1.15,
+          "keySizeBytes": 1184,
+          "signatureSizeBytes": 0,
+          "relativeCost": "low",
+          "rationale": "Recommended by NIST, NSA CNSA 2.0, and IETF for all TLS 1.3 connections"
+        },
+        {
+          "nistStandard": "FIPS 203 (ML-KEM-1024)",
+          "isHybrid": false,
+          "relativeLatency": 1.28,
+          "keySizeBytes": 1568,
+          "signatureSizeBytes": 0,
+          "relativeCost": "medium",
+          "rationale": "Level 5 parameter for classified and ultra-long-lived national security secrets"
+        }
+      ]
+    },
+    "ECDH": {
+      "primaryReplacement": "ML-KEM-768 (Kyber768) Hybrid",
+      "latencyNote": "+0.8ms handshake computation",
+      "costNote": "Ciphertext encapsulation payload of 1,088 bytes",
+      "alternatives": [
+        {
+          "nistStandard": "FIPS 203 (ML-KEM-768) + X25519",
+          "isHybrid": true,
+          "relativeLatency": 1.1,
+          "keySizeBytes": 1184,
+          "signatureSizeBytes": 0,
+          "relativeCost": "low",
+          "rationale": "Gold standard hybrid KEM adopted in OpenSSL 3.4 and modern browsers"
+        }
+      ]
+    },
+    "DSA": {
+      "primaryReplacement": "ML-DSA-65 (Dilithium3)",
+      "latencyNote": "Significantly improves verification throughput over legacy DSA",
+      "costNote": "Immediate deprecation required; update verification keyrings",
+      "alternatives": [
+        {
+          "nistStandard": "FIPS 204 (ML-DSA-65)",
+          "isHybrid": false,
+          "relativeLatency": 0.85,
+          "keySizeBytes": 1952,
+          "signatureSizeBytes": 3309,
+          "relativeCost": "low",
+          "rationale": "Replaces legacy DSA with state-of-the-art lattice signatures"
+        }
+      ]
+    },
+    "Ed25519": {
+      "primaryReplacement": "ML-DSA-44 or SLH-DSA-SHA2-128f",
+      "latencyNote": "Sub-millisecond verification overhead",
+      "costNote": "Replace SSH host keys and API authorization keys",
+      "alternatives": [
+        {
+          "nistStandard": "FIPS 204 (ML-DSA-44)",
+          "isHybrid": false,
+          "relativeLatency": 1.1,
+          "keySizeBytes": 1312,
+          "signatureSizeBytes": 2420,
+          "relativeCost": "low",
+          "rationale": "High-performance lattice signatures for SSH and authentication microservices"
+        }
+      ]
+    },
+    "X25519": {
+      "primaryReplacement": "X25519 + ML-KEM-768 Hybrid",
+      "latencyNote": "+0.4ms handshake overhead",
+      "costNote": "Minimal compute penalty; widely standardized in IETF",
+      "alternatives": [
+        {
+          "nistStandard": "FIPS 203 (ML-KEM-768) + X25519",
+          "isHybrid": true,
+          "relativeLatency": 1.12,
+          "keySizeBytes": 1184,
+          "signatureSizeBytes": 0,
+          "relativeCost": "low",
+          "rationale": "IETF post-quantum standard draft adopted by Cloudflare, Google, and Apple"
+        }
+      ]
+    },
+    "MD5": {
+      "primaryReplacement": "SHA-256 or SHA-384",
+      "latencyNote": "Negligible hardware-accelerated difference",
+      "costNote": "Drop-in code replacement for digest and checksum routines",
+      "alternatives": [
+        {
+          "nistStandard": "FIPS 180-4 (SHA-256)",
+          "isHybrid": false,
+          "relativeLatency": 1.0,
+          "keySizeBytes": 0,
+          "signatureSizeBytes": 32,
+          "relativeCost": "low",
+          "rationale": "Standard cryptographic replacement for broken legacy digests"
+        }
+      ]
+    },
+    "SHA-1": {
+      "primaryReplacement": "SHA-256 or SHA-384",
+      "latencyNote": "Native CPU SHA extensions match SHA-1 throughput",
+      "costNote": "Zero payload increase for standard 256-bit hash outputs",
+      "alternatives": [
+        {
+          "nistStandard": "FIPS 180-4 (SHA-384)",
+          "isHybrid": false,
+          "relativeLatency": 1.02,
+          "keySizeBytes": 0,
+          "signatureSizeBytes": 48,
+          "relativeCost": "low",
+          "rationale": "Provides 192-bit quantum margin; complies with CNSA 2.0"
+        }
+      ]
+    },
+    "DES": {
+      "primaryReplacement": "AES-256-GCM",
+      "latencyNote": "AES-NI provides up to 5x faster hardware encryption than software DES",
+      "costNote": "Migrate database column sizes and key stores to 256-bit",
+      "alternatives": [
+        {
+          "nistStandard": "FIPS 197 (AES-256-GCM)",
+          "isHybrid": false,
+          "relativeLatency": 0.3,
+          "keySizeBytes": 32,
+          "signatureSizeBytes": 16,
+          "relativeCost": "low",
+          "rationale": "Authenticated encryption with 128-bit quantum security margin"
+        }
+      ]
+    },
+    "3DES": {
+      "primaryReplacement": "AES-256-GCM",
+      "latencyNote": "Significantly faster execution due to hardware AES-NI instructions",
+      "costNote": "Eliminates 64-bit block collision vulnerabilities (Sweet32)",
+      "alternatives": [
+        {
+          "nistStandard": "FIPS 197 (AES-256-GCM)",
+          "isHybrid": false,
+          "relativeLatency": 0.4,
+          "keySizeBytes": 32,
+          "signatureSizeBytes": 16,
+          "relativeCost": "low",
+          "rationale": "Eliminates Sweet32 collision attacks and provides robust Grover resistance"
+        }
+      ]
+    },
+    "RC4": {
+      "primaryReplacement": "ChaCha20-Poly1305 or AES-256-GCM",
+      "latencyNote": "Sub-microsecond AEAD streaming performance",
+      "costNote": "Fixes critical plaintext recovery vulnerabilities",
+      "alternatives": [
+        {
+          "nistStandard": "RFC 8439 (ChaCha20-Poly1305)",
+          "isHybrid": false,
+          "relativeLatency": 0.9,
+          "keySizeBytes": 32,
+          "signatureSizeBytes": 16,
+          "relativeCost": "low",
+          "rationale": "High-speed constant-time stream cipher resistant to quantum attacks"
+        }
+      ]
+    },
+    "AES-128": {
+      "primaryReplacement": "AES-256-GCM",
+      "latencyNote": "Virtually indistinguishable performance on modern CPUs with AES-NI",
+      "costNote": "Bump key generation parameter from 16 to 32 bytes",
+      "alternatives": [
+        {
+          "nistStandard": "FIPS 197 (AES-256-GCM)",
+          "isHybrid": false,
+          "relativeLatency": 1.05,
+          "keySizeBytes": 32,
+          "signatureSizeBytes": 16,
+          "relativeCost": "low",
+          "rationale": "Mitigates Grover's quadratic search reduction (maintains 128-bit security)"
+        }
+      ]
+    },
+    "TLS 1.0": {
+      "primaryReplacement": "TLS 1.3 with Hybrid Post-Quantum Key Exchange",
+      "latencyNote": "Faster 1-RTT handshake performance replacing legacy renegotiations",
+      "costNote": "Drops outdated legacy client browsers unable to negotiate modern TLS",
+      "alternatives": [
+        {
+          "nistStandard": "TLS 1.3 + ML-KEM-768",
+          "isHybrid": true,
+          "relativeLatency": 0.8,
+          "keySizeBytes": 1184,
+          "signatureSizeBytes": 0,
+          "relativeCost": "low",
+          "rationale": "Modern secure transport with forward secrecy immune to harvest-now-decrypt-later"
+        }
+      ]
+    },
+    "TLS 1.2": {
+      "primaryReplacement": "TLS 1.3 with Hybrid Post-Quantum Key Exchange",
+      "latencyNote": "Reduces connection roundtrips from 2-RTT to 1-RTT",
+      "costNote": "Update reverse proxy configs (nginx/envoy/traefik)",
+      "alternatives": [
+        {
+          "nistStandard": "TLS 1.3 + ML-KEM-768",
+          "isHybrid": true,
+          "relativeLatency": 0.85,
+          "keySizeBytes": 1184,
+          "signatureSizeBytes": 0,
+          "relativeCost": "low",
+          "rationale": "Standard upgrade path for web applications and microservice meshes"
+        }
+      ]
+    }
+  }
+}

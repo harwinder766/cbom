@@ -1,0 +1,9 @@
+Port 22
+Protocol 2
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_dsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+Ciphers 3des-cbc,aes128-cbc,aes256-ctr
+MACs hmac-md5,hmac-sha1,hmac-sha2-256
+KexAlgorithms diffie-hellman-group1-sha1,diffie-hellman-group14-sha1,curve25519-sha256
+PermitRootLogin yes

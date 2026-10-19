@@ -1,0 +1,235 @@
+{
+  "algorithms": [
+    {
+      "name": "RSA",
+      "aliases": ["RSA-1024", "RSA-2048", "RSA-3072", "RSA-4096", "PKCS1", "RSASSA-PKCS1-v1_5", "RSA-OAEP", "RSA-PSS"],
+      "algorithmClass": "asymmetric",
+      "type": "key",
+      "quantumStatus": "shor_vulnerable",
+      "classicalSecurityBits": 112,
+      "nistStatus": "deprecated_or_transition",
+      "oid": "1.2.840.113549.1.1.1",
+      "description": "Integer factorization cryptography; completely solvable in polynomial time via Shor's Algorithm."
+    },
+    {
+      "name": "ECDSA",
+      "aliases": ["ECDSA-P256", "ECDSA P-256", "ECDSA-P384", "ECDSA P-384", "ECDSA-P521", "secp256k1", "secp256r1", "prime256v1"],
+      "algorithmClass": "asymmetric",
+      "type": "algorithm",
+      "quantumStatus": "shor_vulnerable",
+      "classicalSecurityBits": 128,
+      "nistStatus": "fips_186_4_transition",
+      "oid": "1.2.840.10045.2.1",
+      "description": "Elliptic curve digital signatures; discrete logarithm solved in polynomial time by Shor's Algorithm."
+    },
+    {
+      "name": "Diffie-Hellman",
+      "aliases": ["DH", "DH-1024", "DH-2048", "Diffie-Hellman (DH-2048)", "DHE", "FFDHE"],
+      "algorithmClass": "asymmetric",
+      "type": "protocol",
+      "quantumStatus": "shor_vulnerable",
+      "classicalSecurityBits": 112,
+      "nistStatus": "transition",
+      "oid": "1.2.840.113549.1.3.1",
+      "description": "Finite-field key agreement; discrete logarithm broken by Shor's Algorithm (enables retrospective decryption)."
+    },
+    {
+      "name": "ECDH",
+      "aliases": ["ECDH-P256", "ECDH-P384", "ECDHE", "ECDHE-RSA", "ECDHE-ECDSA"],
+      "algorithmClass": "asymmetric",
+      "type": "protocol",
+      "quantumStatus": "shor_vulnerable",
+      "classicalSecurityBits": 128,
+      "nistStatus": "transition",
+      "oid": "1.3.132.1.12",
+      "description": "Elliptic curve key agreement; session keys recoverable with CRQC."
+    },
+    {
+      "name": "DSA",
+      "aliases": ["DSA-1024", "DSA-2048"],
+      "algorithmClass": "asymmetric",
+      "type": "key",
+      "quantumStatus": "shor_vulnerable",
+      "classicalSecurityBits": 80,
+      "nistStatus": "deprecated",
+      "oid": "1.2.840.10040.4.1",
+      "description": "Digital Signature Algorithm; broken by Shor's Algorithm and legacy parameter weaknesses."
+    },
+    {
+      "name": "Ed25519",
+      "aliases": ["EdDSA", "Ed448", "Curve25519-EdDSA"],
+      "algorithmClass": "asymmetric",
+      "type": "key",
+      "quantumStatus": "shor_vulnerable",
+      "classicalSecurityBits": 128,
+      "nistStatus": "fips_186_5_transition",
+      "oid": "1.3.101.112",
+      "description": "Edwards-curve signature scheme; broken by Shor's Algorithm on quantum hardware."
+    },
+    {
+      "name": "X25519",
+      "aliases": ["Curve25519", "X448"],
+      "algorithmClass": "asymmetric",
+      "type": "protocol",
+      "quantumStatus": "shor_vulnerable",
+      "classicalSecurityBits": 128,
+      "nistStatus": "transition",
+      "oid": "1.3.101.110",
+      "description": "Montgomery curve key exchange; requires hybrid PQC encapsulation (ML-KEM-768)."
+    },
+    {
+      "name": "MD5",
+      "aliases": ["MD5-HMAC"],
+      "algorithmClass": "hash",
+      "type": "algorithm",
+      "quantumStatus": "classically_broken",
+      "classicalSecurityBits": 0,
+      "nistStatus": "deprecated_broken",
+      "oid": "1.2.840.113549.2.5",
+      "description": "Classically broken hashing function; collision attacks demonstrated in seconds. Insecure today."
+    },
+    {
+      "name": "SHA-1",
+      "aliases": ["SHA1"],
+      "algorithmClass": "hash",
+      "type": "algorithm",
+      "quantumStatus": "classically_broken",
+      "classicalSecurityBits": 0,
+      "nistStatus": "deprecated_broken",
+      "oid": "1.3.14.3.2.26",
+      "description": "Classically broken digest with practical chosen-prefix collision attacks. Banned by NIST."
+    },
+    {
+      "name": "DES",
+      "aliases": ["Single-DES"],
+      "algorithmClass": "symmetric",
+      "type": "algorithm",
+      "quantumStatus": "classically_broken",
+      "classicalSecurityBits": 56,
+      "nistStatus": "withdrawn",
+      "oid": "1.3.14.3.2.7",
+      "description": "56-bit block cipher vulnerable to brute-force in hours. Completely broken."
+    },
+    {
+      "name": "3DES",
+      "aliases": ["Triple DES", "DES-EDE3", "TDES"],
+      "algorithmClass": "symmetric",
+      "type": "algorithm",
+      "quantumStatus": "classically_broken",
+      "classicalSecurityBits": 112,
+      "nistStatus": "disallowed",
+      "oid": "1.2.840.113549.3.7",
+      "description": "64-bit block size susceptible to Sweet32 birthday collision attacks. Deprecated by NIST in 2023."
+    },
+    {
+      "name": "RC4",
+      "aliases": ["Arcfour", "ARC4"],
+      "algorithmClass": "symmetric",
+      "type": "algorithm",
+      "quantumStatus": "classically_broken",
+      "classicalSecurityBits": 0,
+      "nistStatus": "prohibited",
+      "oid": "1.2.840.113549.3.4",
+      "description": "Stream cipher with multiple keystream biases. Banned in TLS RFC 7465."
+    },
+    {
+      "name": "AES-128",
+      "aliases": ["AES-128-CBC", "AES-128-GCM", "AES-128-ECB", "AES-128-CTR"],
+      "algorithmClass": "symmetric",
+      "type": "algorithm",
+      "quantumStatus": "grover_weakened",
+      "classicalSecurityBits": 128,
+      "nistStatus": "acceptable",
+      "oid": "2.16.840.1.101.3.4.1.2",
+      "description": "Grover's Algorithm quadratic speedup reduces effective security from 128 to ~64 bits. Upgrade to AES-256 recommended."
+    },
+    {
+      "name": "AES-256",
+      "aliases": ["AES-256-GCM", "AES-256-CBC", "AES-256-CTR"],
+      "algorithmClass": "symmetric",
+      "type": "algorithm",
+      "quantumStatus": "quantum_safe",
+      "classicalSecurityBits": 256,
+      "nistStatus": "quantum_resistant_standard",
+      "oid": "2.16.840.1.101.3.4.1.42",
+      "description": "Maintains ~128 bits of effective security against Grover's quantum search. Post-quantum approved."
+    },
+    {
+      "name": "ChaCha20-Poly1305",
+      "aliases": ["ChaCha20"],
+      "algorithmClass": "symmetric",
+      "type": "algorithm",
+      "quantumStatus": "quantum_safe",
+      "classicalSecurityBits": 256,
+      "nistStatus": "acceptable",
+      "oid": "1.2.840.113549.1.9.16.3.18",
+      "description": "256-bit stream cipher with Poly1305 authenticator; robust against quantum search."
+    },
+    {
+      "name": "SHA-256",
+      "aliases": ["SHA256"],
+      "algorithmClass": "hash",
+      "type": "algorithm",
+      "quantumStatus": "grover_weakened",
+      "classicalSecurityBits": 256,
+      "nistStatus": "acceptable",
+      "oid": "2.16.840.1.101.3.4.2.1",
+      "description": "Grover collision search reduces bit margin to ~128 bits. Use SHA-384 or SHA-512 for high assurance."
+    },
+    {
+      "name": "SHA-384",
+      "aliases": ["SHA384"],
+      "algorithmClass": "hash",
+      "type": "algorithm",
+      "quantumStatus": "quantum_safe",
+      "classicalSecurityBits": 384,
+      "nistStatus": "quantum_resistant_standard",
+      "oid": "2.16.840.1.101.3.4.2.2",
+      "description": "High-margin hash function providing 192 bits of post-quantum collision resistance (CNSA 2.0 standard)."
+    },
+    {
+      "name": "SHA-512",
+      "aliases": ["SHA512", "SHA-3", "SHA3-256", "SHA3-384", "SHA3-512"],
+      "algorithmClass": "hash",
+      "type": "algorithm",
+      "quantumStatus": "quantum_safe",
+      "classicalSecurityBits": 512,
+      "nistStatus": "quantum_resistant_standard",
+      "oid": "2.16.840.1.101.3.4.2.3",
+      "description": "256 bits of quantum collision resistance against Brassard-Høyer-Tapp algorithm."
+    },
+    {
+      "name": "TLS 1.0",
+      "aliases": ["TLSv1", "TLS 1.1", "TLSv1.1"],
+      "algorithmClass": "asymmetric",
+      "type": "protocol",
+      "quantumStatus": "shor_vulnerable",
+      "classicalSecurityBits": 0,
+      "nistStatus": "deprecated",
+      "oid": "1.3.6.1.5.5.7.13.1",
+      "description": "Deprecated protocols with BEAST, POODLE, and weak key-exchange vulnerabilities."
+    },
+    {
+      "name": "TLS 1.2",
+      "aliases": ["TLSv1.2"],
+      "algorithmClass": "asymmetric",
+      "type": "protocol",
+      "quantumStatus": "shor_vulnerable",
+      "classicalSecurityBits": 128,
+      "nistStatus": "transition",
+      "oid": "1.3.6.1.5.5.7.13.2",
+      "description": "Classical handshake relying on RSA/ECDH key agreement; migrate to TLS 1.3 with Hybrid PQC."
+    },
+    {
+      "name": "TLS 1.3",
+      "aliases": ["TLSv1.3"],
+      "algorithmClass": "asymmetric",
+      "type": "protocol",
+      "quantumStatus": "quantum_safe",
+      "classicalSecurityBits": 256,
+      "nistStatus": "current_standard",
+      "oid": "1.3.6.1.5.5.7.13.3",
+      "description": "Supports hybrid post-quantum key encapsulation (e.g., X25519+ML-KEM-768)."
+    }
+  ]
+}

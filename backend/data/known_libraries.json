@@ -1,0 +1,92 @@
+{
+  "libraries": {
+    "pycryptodome": {
+      "ecosystem": "pypi",
+      "package": "pycryptodome",
+      "deprecatedBefore": "3.15.0",
+      "algorithms": ["AES", "RSA", "DES", "3DES", "MD5", "SHA-1", "SHA-256", "ChaCha20"],
+      "pqcSupported": false,
+      "pqcUpgradeRecommendation": "pycryptodome >= 3.21.0 with liboqs / oqs-provider bindings"
+    },
+    "pycryptodomex": {
+      "ecosystem": "pypi",
+      "package": "pycryptodomex",
+      "deprecatedBefore": "3.15.0",
+      "algorithms": ["AES", "RSA", "DES", "3DES", "MD5", "SHA-1"],
+      "pqcSupported": false,
+      "pqcUpgradeRecommendation": "pycryptodomex >= 3.21.0"
+    },
+    "cryptography": {
+      "ecosystem": "pypi",
+      "package": "cryptography",
+      "deprecatedBefore": "41.0.0",
+      "algorithms": ["RSA", "ECDSA", "ECDH", "Ed25519", "X25519", "AES", "ChaCha20-Poly1305"],
+      "pqcSupported": true,
+      "pqcUpgradeRecommendation": "cryptography >= 43.0.0 (supports X.509 PQC extensions)"
+    },
+    "pyOpenSSL": {
+      "ecosystem": "pypi",
+      "package": "pyOpenSSL",
+      "deprecatedBefore": "22.0.0",
+      "algorithms": ["TLS 1.0", "TLS 1.2", "RSA", "ECDSA"],
+      "pqcSupported": false,
+      "pqcUpgradeRecommendation": "pyOpenSSL >= 24.0.0 built on OpenSSL 3.4+"
+    },
+    "crypto-js": {
+      "ecosystem": "npm",
+      "package": "crypto-js",
+      "deprecatedBefore": "4.2.0",
+      "algorithms": ["AES", "DES", "3DES", "MD5", "SHA-1", "SHA-256", "RC4"],
+      "pqcSupported": false,
+      "pqcUpgradeRecommendation": "Migrate to WebCrypto API or @noble/ciphers with ML-KEM/ML-DSA"
+    },
+    "node-forge": {
+      "ecosystem": "npm",
+      "package": "node-forge",
+      "deprecatedBefore": "1.3.1",
+      "algorithms": ["RSA", "AES", "DES", "3DES", "MD5", "SHA-1"],
+      "pqcSupported": false,
+      "pqcUpgradeRecommendation": "Migrate to Node.js native crypto with OpenSSL 3.4 provider"
+    },
+    "bcrypt": {
+      "ecosystem": "npm",
+      "package": "bcrypt",
+      "deprecatedBefore": "5.0.0",
+      "algorithms": ["bcrypt"],
+      "pqcSupported": true,
+      "pqcUpgradeRecommendation": "Argon2id (RFC 9106) / bcrypt cost >= 12"
+    },
+    "org.bouncycastle:bcprov-jdk15on": {
+      "ecosystem": "maven",
+      "package": "bcprov-jdk15on",
+      "deprecatedBefore": "1.70",
+      "algorithms": ["RSA", "DSA", "ECDSA", "ECDH", "AES", "DES", "3DES"],
+      "pqcSupported": false,
+      "pqcUpgradeRecommendation": "Upgrade to org.bouncycastle:bcprov-jdk18on >= 1.78 (includes FIPS 203/204/205)"
+    },
+    "org.bouncycastle:bcprov-jdk18on": {
+      "ecosystem": "maven",
+      "package": "bcprov-jdk18on",
+      "deprecatedBefore": "1.77",
+      "algorithms": ["ML-KEM", "ML-DSA", "SLH-DSA", "Falcon", "RSA", "ECDSA"],
+      "pqcSupported": true,
+      "pqcUpgradeRecommendation": "Use Bouncy Castle 1.78+ native PQC providers"
+    },
+    "golang.org/x/crypto": {
+      "ecosystem": "go",
+      "package": "golang.org/x/crypto",
+      "deprecatedBefore": "v0.17.0",
+      "algorithms": ["ChaCha20-Poly1305", "Ed25519", "bcrypt", "scrypt", "Argon2", "curve25519"],
+      "pqcSupported": true,
+      "pqcUpgradeRecommendation": "Upgrade to golang.org/x/crypto >= v0.31.0 and Go 1.24+ (crypto/mlkem included in stdlib)"
+    },
+    "openssl": {
+      "ecosystem": "system",
+      "package": "openssl",
+      "deprecatedBefore": "3.0.0",
+      "algorithms": ["RSA", "DSA", "ECDSA", "ECDH", "AES", "DES", "3DES", "MD5", "SHA-1", "TLS 1.0", "TLS 1.2"],
+      "pqcSupported": false,
+      "pqcUpgradeRecommendation": "Upgrade to OpenSSL 3.4+ with liboqs / oqs-provider for ML-KEM and ML-DSA support"
+    }
+  }
+}

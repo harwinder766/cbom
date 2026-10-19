@@ -1,0 +1,11 @@
+.venv
+uploads
+workspaces
+*.db
+cbom.db*
+__pycache__
+.pytest_cache
+*.pyc
+*.pyo
+.coverage
+htmlcov
